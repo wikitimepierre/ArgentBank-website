@@ -25,3 +25,9 @@ function Signin() {
 }
 
 export default Signin;
+
+//email: "tony@stark.com"
+//password: "$2b$12$vkwoOWKlydR27u22hlZOwub6eEw.GJ83zT9XXhur/45GNYElQEF0."
+//firstName: "Tony"
+//lastName: "Stark"
+//userName: "Iron"
