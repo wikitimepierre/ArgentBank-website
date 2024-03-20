@@ -1,3 +1,6 @@
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+
 import { Header } from '../features/header/Header';
 import { Open } from '../features/open/Open';
 import { Reasons } from '../features/reasons/Reasons';
@@ -11,12 +14,14 @@ function App() {
   return (
     <>
       <Header />
-      <Open />
-      <Reasons />
-      <SignIn />
-      <Welcome />
-      <Edit />
-      <Accounts />
+
+      <Routes>
+        <Route path="/" element={<Open /><Reasons />} />
+        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/user" element={<Welcome /><Accounts />} />
+        <Route path="/edit" element={<Edit />} />
+      </Routes>
+
       <Footer />
     </>
   );
@@ -30,3 +35,6 @@ export default App;
 //    <Provider store={store}>
 //      insert all components inside the Provider component
 //    </Provider>
+
+//TODO: a 404 page ?
+//<Route path="/*" element={<Page404 />} />
