@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-
-import './css/main.css';
-import App from './app/App';
+//import './css/main.css';
+import App from '../src/app/App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,6 +13,8 @@ root.render(
     </BrowserRouter>
   </React.StrictMode>
 );
+
+reportWebVitals();
 
 //TODO: check that css does propagate in all components
 

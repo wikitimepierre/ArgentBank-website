@@ -1,14 +1,14 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import { Header } from '../components/Header';
-import { Open } from '../components/Open';
-import { Reasons } from '../components/Reasons';
-import { SignIn } from '../components/SignIn';
-import { Welcome } from '../components/Welcome';
-import { Edit } from '../components/Edit';
-import { Accounts } from '../components/Accounts';
-import { Footer } from '../components/Footer';
+import Header from '../components/Header';
+import Open from '../components/Open';
+import Reasons from '../components/Reasons';
+import SignIn from '../components/SignIn';
+import Welcome from '../components/Welcome';
+import Edit from '../components/Edit';
+import Accounts from '../components/Accounts';
+import Footer from '../components/Footer';
 
 function App() {
   return (
