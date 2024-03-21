@@ -3,7 +3,9 @@ import Account from './Account';
 
 function Accounts() {
   return (
-    <>
+    <div className="header main bg-dark">
+      <br /><h1>Welcome back<br />Tony Jarvis!</h1>
+      <button className="edit-button">Edit Name</button><br /><br />
       <h2 className="sr-only">Accounts</h2>
       <Account
         title="Argent Bank Checking (x8349)"
@@ -20,7 +22,8 @@ function Accounts() {
         amount="$184.30"
         description="Current Balance"
       />
-    </>
+      <br />
+    </div>
   );
 }
 

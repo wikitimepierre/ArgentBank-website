@@ -3,9 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import Header from '../components/Header';
 import Open from '../components/Open';
-import Reasons from '../components/Reasons';
 import SignIn from '../components/SignIn';
-import Welcome from '../components/Welcome';
 import Edit from '../components/Edit';
 import Accounts from '../components/Accounts';
 import Footer from '../components/Footer';
@@ -16,11 +14,10 @@ function App() {
       <Header />
 
       <Routes>
-        <Route path="/" element={<> <Open /> <Reasons /> <SignIn /> <Welcome /> <Accounts /> < Edit /> </>} />
-        <Route path="/home" element={<> <Open /> <Reasons /> </>} />
+        <Route path="/" element={<> <Open /> </>} />
         <Route path="/sign-in" element={<> <SignIn /> </>} />
-        <Route path="/user" element={<> <Welcome /> <Accounts /> </>} />
         <Route path="/edit" element={<> < Edit /> </>} />
+        <Route path="/user" element={<> <Accounts /> </>} />
       </Routes>
 
       <Footer />
