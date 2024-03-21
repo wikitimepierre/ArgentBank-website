@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-//import './css/main.css';
+import './css/main.css';
 import App from '../src/app/App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -15,8 +15,6 @@ root.render(
 );
 
 reportWebVitals();
-
-//TODO: check that css does propagate in all components
 
 //Wrap your application with `<BrowserRouter>` component = routing in React app to any nested components.
 //uses the history API(pushState, replaceState, and the popstate event) + creates a browser history.

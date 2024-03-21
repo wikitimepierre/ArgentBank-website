@@ -16,7 +16,8 @@ function App() {
       <Header />
 
       <Routes>
-        <Route path="/" element={<> <Open /> <Reasons /> </>} />
+        <Route path="/" element={<> <Open /> <Reasons /> <SignIn /> <Welcome /> <Accounts /> < Edit /> </>} />
+        <Route path="/home" element={<> <Open /> <Reasons /> </>} />
         <Route path="/sign-in" element={<> <SignIn /> </>} />
         <Route path="/user" element={<> <Welcome /> <Accounts /> </>} />
         <Route path="/edit" element={<> < Edit /> </>} />

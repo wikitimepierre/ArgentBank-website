@@ -1,5 +1,4 @@
 import React from 'react';
-import { Reason } from './Reason';
 
 function Reason({ src, alt, title, subtitle }) {
   return (
