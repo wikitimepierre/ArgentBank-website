@@ -278,6 +278,12 @@ body {
   color: #fff;
 }
 
+.inrow {
+  display: flex;
+  justify-content:left;
+  align-items: center;
+}
+
 @media (min-width: 720px) {
   .account {
     flex-direction: row;

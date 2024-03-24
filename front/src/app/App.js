@@ -1,6 +1,9 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from './store';
 
+import DebugMenu from '../components/DebugMenu';
 import Header from '../components/Header';
 import Open from '../components/Open';
 import SignIn from '../components/SignIn';
@@ -10,7 +13,9 @@ import Footer from '../components/Footer';
 
 function App() {
   return (
-    <>
+    <Provider store={store}>
+
+      <DebugMenu />
       <Header />
 
       <Routes>
@@ -21,18 +26,12 @@ function App() {
       </Routes>
 
       <Footer />
-    </>
+
+    </Provider>
   );
 }
 
 export default App;
 
 //The `Provider` component makes the Redux store available to nested components
-//import { store } from './store';
-//import { Provider } from 'react-redux';
-//    <Provider store={store}>
-//      insert all components inside the Provider component
-//    </Provider>
-
 //TODO: a 404 page ?
-//<Route path="/*" element={<Page404 />} />
