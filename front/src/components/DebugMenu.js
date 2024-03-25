@@ -12,6 +12,7 @@ function DebugMenu() {
   let separator = <span>&nbsp;&nbsp;</span>;
 
   const isDebug = useSelector((state) => state.debugCheckbox.value);
+
   let debug = isDebug ? (
     <span>
       <a>
@@ -22,6 +23,8 @@ function DebugMenu() {
         <Link to="/edit">EDIT</Link>
         {separator}
         <Link to="/user">USER</Link>
+        {separator}
+        <Link to="/accounttable">ACCOUNTS</Link>
         {separator}
       </a>
       <DebugCounter />

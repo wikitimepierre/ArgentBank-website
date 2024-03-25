@@ -6,6 +6,9 @@ import DebugCheckbox from './DebugCheckbox';
 function Header() {
 
   let username = "XXXXXX";
+  //TODO if i'm signed in, I should display the username 
+  //TODO if not, i should be redirected to the home page + dispatch empty user info      break;
+
 
   let content;
   const location = useLocation();
@@ -29,7 +32,6 @@ function Header() {
           <i className="fa fa-sign-out"> <a> <Link to="/"> Sign Out</Link> </a> </i>
         </span>
       );
-      break;
     default:
       content = null;
   }
@@ -57,4 +59,3 @@ function Header() {
 }
 
 export default Header;
-

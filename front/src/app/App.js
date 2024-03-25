@@ -9,6 +9,7 @@ import Open from '../components/Open';
 import SignIn from '../components/SignIn';
 import Edit from '../components/Edit';
 import Accounts from '../components/Accounts';
+import ProductTable from '../components/ProductTable';
 import Footer from '../components/Footer';
 
 function App() {
@@ -22,7 +23,8 @@ function App() {
         <Route path="/" element={<> <Open /> </>} />
         <Route path="/sign-in" element={<> <SignIn /> </>} />
         <Route path="/edit" element={<> < Edit /> </>} />
-        <Route path="/user" element={<> <Accounts /> </>} />
+        <Route path="/user" element={<> < Accounts /> </>} />
+        <Route path="/producttable" element={<> < ProductTable /> </>} />
       </Routes>
 
       <Footer />
