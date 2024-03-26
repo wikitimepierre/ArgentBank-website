@@ -1,12 +1,13 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import Logo from '../assets/images/argentBankLogo.png';
 import DebugCheckbox from './DebugCheckbox';
 
 function Header() {
 
-  let username = "XXXXXX";
-  //TODO if i'm signed in, I should display the username 
+  // TODO: Get the username from the store if available
+  let username = useSelector(state => state.userName);
   //TODO if not, i should be redirected to the home page + dispatch empty user info      break;
 
 
@@ -14,24 +15,20 @@ function Header() {
   const location = useLocation();
   switch (location.pathname) {
     case "/":
-      content = (
-        <span>
-          <i className="fa fa-user-circle"> <span> <Link to="/sign-in"> Sign In</Link> </span> </i>
-        </span>
-      );
+      content = (<span>
+        <i className="fa fa-user-circle"> <span> <Link to="/sign-in"> Sign In</Link> </span> </i>
+      </span>);
       break;
     case "/sign-in":
       content = <a> <Link to="/">Home</Link></a>;
       break;
     case "/user":
     case "/edit":
-      content = (
-        <span>
-          <i className="fa fa-user-circle"> <a> <Link to="/user">{username}</Link> </a> </i>
-          <span>&nbsp;&nbsp;</span>
-          <i className="fa fa-sign-out"> <a> <Link to="/"> Sign Out</Link> </a> </i>
-        </span>
-      );
+      content = (<span>
+        <i className="fa fa-user-circle"> <a> <Link to="/user">{username}</Link> </a> </i>
+        <span>&nbsp;&nbsp;</span>
+        <i className="fa fa-sign-out"> <a> <Link to="/"> Sign Out</Link> </a> </i>
+      </span>);
     default:
       content = null;
   }

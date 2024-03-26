@@ -6,6 +6,7 @@ export default function DebugCheckbox() {
 
   return (
     //<input type="checkbox" id="debug" onChange={handleCheckboxChange} value={DebugValue}/>
-    <input type="checkbox" id="debug" onChange={() => dispatch(switchDebugValue())} />
+    //<input type="checkbox" id="debug" onChange={() => dispatch(switchDebugValue())} />
+    <input type="checkbox" id="debug" onChange={(e) => dispatch(switchDebugValue(e.target.checked))} />
   );
 }

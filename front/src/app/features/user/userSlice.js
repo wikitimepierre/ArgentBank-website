@@ -1,4 +1,4 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 export const login = createAsyncThunk(
   'users/login',
@@ -9,15 +9,12 @@ export const login = createAsyncThunk(
       body: loginCredentials
       // body: JSON.stringify(loginCredentials);
     });
-
     if (response.ok) {
       const data = await response.json();
-      console.log(data);
-      alert("login - " + response.status + " - " + data.message);
-      thunkAPI.dispatch(profile(data.token));
-      //TODO save data.token in the store
-      //TODO save userinfo in the store (email)
-      //TODO appeler user profile pour avoir les infos de l'utilisateur
+      // thunkAPI.dispatch(saveUserEmail({email: JSON.parse(loginCredentials).email},{token: data.body.token}));
+      thunkAPI.dispatch(saveUserEmail({ email: JSON.parse(loginCredentials).email }));
+      thunkAPI.dispatch(saveUserToken({ token: data.body.token }));
+      thunkAPI.dispatch(profile(data.body.token));
       return data;
     } else {
       console.error(await response.json());
@@ -27,16 +24,8 @@ export const login = createAsyncThunk(
   }
 );
 
-//{
-//    "status": 200,
-//    "message": "User successfully logged in",
-//    "body": {
-//        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZjFlNWEwOGM2NGE5MmE1NDZhYWE1NSIsImlhdCI6MTcxMTI5Njk5NiwiZXhwIjoxNzExMzgzMzk2fQ.9ARtXCCeT1NOUdzV44onGbp8nLX_X0HB23pcZY7uJw0"
-//    }
-//}
-
 export const profile = createAsyncThunk(
-  'users/login',
+  'users/profile',
   async (token, thunkAPI) => {
     const response = await fetch('http://localhost:3001/api/v1/user/profile', {
       method: 'POST',
@@ -44,14 +33,15 @@ export const profile = createAsyncThunk(
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       }
-      //body: ''
     });
-
     if (response.ok) {
       const data = await response.json();
-      console.log(data);
-      alert("userInfo - " + data.message + " firstName:" + data.firstName + " lastName:" + data.lastName + " userName:" + data.userName + " id:" + data.id);
-      //TODO save userinfo in the store (fisrtName, lastName, userName, id)
+      thunkAPI.dispatch(saveUserInfo({
+        firstName: data.body.firstName,
+        lastName: data.body.lastName,
+        userName: data.body.userName,
+        id: data.body.id
+      }));
       return data;
     } else {
       console.error(await response.json());
@@ -62,14 +52,55 @@ export const profile = createAsyncThunk(
   }
 );
 
-//{
-//  "status": 200,
-//  "message": "Successfully got user profile data",
-//  "body": {
-//    "email": "tony@stark.com",
-//    "firstName": "Tony",
-//    "lastName": "Stark",
-//    "userName": "Iron",
-//    "id": "65f1e5a08c64a92a546aaa55"
-//  }
-//}
+const userSlice = createSlice({
+  name: 'user',
+  initialState: {
+    email: null,
+    token: null,
+    firstName: null,
+    lastName: null,
+    userName: null,
+    id: null
+  },
+  reducers: {
+    saveUserEmail: (state, action) => { state.email = action.payload.email },
+    saveUserToken: (state, action) => { state.token = action.payload.token },
+    saveUserInfo: (state, action) => {
+      state.firstName = action.payload.firstName;
+      state.lastName = action.payload.lastName;
+      state.userName = action.payload.userName;
+      state.id = action.payload.id;
+    }
+    // saveUserEmailToken: (state, action) => {
+    //   state.email = action.payload.email;
+    //   state.token = action.payload.token;
+    // },
+    // saveUserInfo: (state, action) => {
+    //   state.firstName = action.payload.firstName;
+    //   state.lastName = action.payload.lastName;
+    //   state.userName = action.payload.userName;
+    //   state.id = action.payload.id;
+    // },
+  },
+
+  // extraReducers: (builder) => {
+  //   builder.addCase(login.fulfilled, (state, action) => {
+  //     state.token = action.payload.token;
+  //     //pas sur de ça :
+  //     state.email = action.payload.email;
+  //   });
+  //   builder.addCase(profile.fulfilled, (state, action) => {
+  //     state.firstName = action.payload.firstName;
+  //     state.lastName = action.payload.lastName;
+  //     state.userName = action.payload.userName;
+  //     state.id = action.payload.id;
+  //   });
+  // }
+});
+
+export const { actions, reducer } = userSlice;
+export const { saveUserEmail } = userSlice.actions;
+export const { saveUserToken } = userSlice.actions;
+//export const { saveUserEmailToken } = userSlice.actions;
+export const { saveUserInfo } = userSlice.actions;
+export default userSlice.reducer;
