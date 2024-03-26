@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import DebugCounter from './DebugCounter';
+import DebugUserInfo from './DebugUserInfo';
 
 // pas sur de ça
 import { useSelector, useDispatch } from "react-redux";
@@ -28,6 +29,7 @@ function DebugMenu() {
         {separator}
       </a>
       <DebugCounter />
+      <DebugUserInfo />
     </span>
   ) : "";
 

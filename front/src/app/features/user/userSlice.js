@@ -11,10 +11,14 @@ export const login = createAsyncThunk(
     });
     if (response.ok) {
       const data = await response.json();
-      // thunkAPI.dispatch(saveUserEmail({email: JSON.parse(loginCredentials).email},{token: data.body.token}));
-      thunkAPI.dispatch(saveUserEmail({ email: JSON.parse(loginCredentials).email }));
-      thunkAPI.dispatch(saveUserToken({ token: data.body.token }));
+
+      thunkAPI.dispatch(userInfo({
+        email: JSON.parse(loginCredentials).email,
+        token: data.body.token
+      }));
+
       thunkAPI.dispatch(profile(data.body.token));
+      //alert('email: ' + JSON.parse(loginCredentials).email + ' token: ' + data.body.token);
       return data;
     } else {
       console.error(await response.json());
@@ -36,7 +40,7 @@ export const profile = createAsyncThunk(
     });
     if (response.ok) {
       const data = await response.json();
-      thunkAPI.dispatch(saveUserInfo({
+      thunkAPI.dispatch(userInfo({
         firstName: data.body.firstName,
         lastName: data.body.lastName,
         userName: data.body.userName,
@@ -63,44 +67,17 @@ const userSlice = createSlice({
     id: null
   },
   reducers: {
-    saveUserEmail: (state, action) => { state.email = action.payload.email },
-    saveUserToken: (state, action) => { state.token = action.payload.token },
-    saveUserInfo: (state, action) => {
+    userInfo: (state, action) => {
+      state.email = action.payload.email;
+      state.token = action.payload.token;
       state.firstName = action.payload.firstName;
       state.lastName = action.payload.lastName;
       state.userName = action.payload.userName;
       state.id = action.payload.id;
     }
-    // saveUserEmailToken: (state, action) => {
-    //   state.email = action.payload.email;
-    //   state.token = action.payload.token;
-    // },
-    // saveUserInfo: (state, action) => {
-    //   state.firstName = action.payload.firstName;
-    //   state.lastName = action.payload.lastName;
-    //   state.userName = action.payload.userName;
-    //   state.id = action.payload.id;
-    // },
-  },
-
-  // extraReducers: (builder) => {
-  //   builder.addCase(login.fulfilled, (state, action) => {
-  //     state.token = action.payload.token;
-  //     //pas sur de ça :
-  //     state.email = action.payload.email;
-  //   });
-  //   builder.addCase(profile.fulfilled, (state, action) => {
-  //     state.firstName = action.payload.firstName;
-  //     state.lastName = action.payload.lastName;
-  //     state.userName = action.payload.userName;
-  //     state.id = action.payload.id;
-  //   });
-  // }
+  }
 });
 
-export const { actions, reducer } = userSlice;
-export const { saveUserEmail } = userSlice.actions;
-export const { saveUserToken } = userSlice.actions;
-//export const { saveUserEmailToken } = userSlice.actions;
-export const { saveUserInfo } = userSlice.actions;
+export const { userInfo } = userSlice.actions;
 export default userSlice.reducer;
+
