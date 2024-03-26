@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
-import { userInfo } from "../app/features/user/userSlice";
+import { userAuth, userInfo } from "../app/features/user/userSlice";
 
 const DebugUserInfo = () => {
   const separator = <span> - </span>;
-  const email = useSelector((state) => state.userInfo.email) ?? "";
+  const email = useSelector((state) => state.userAuth.email) ?? "";
   const firstName = useSelector((state) => state.userInfo.firstName) ?? "";
   const lastName = useSelector((state) => state.userInfo.lastName) ?? "";
   const userName = useSelector((state) => state.userInfo.userName) ?? "";

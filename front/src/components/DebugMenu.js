@@ -28,7 +28,7 @@ function DebugMenu() {
         <Link to="/accounttable">ACCOUNTS</Link>
         {separator}
       </a>
-      <DebugCounter />
+      {/*}      <DebugCounter />*/}
       <DebugUserInfo />
     </span>
   ) : "";

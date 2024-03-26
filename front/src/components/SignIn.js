@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../app/features/user/userSlice';
 
 function Signin() {
@@ -11,7 +11,9 @@ function Signin() {
     const email = event.target.email.value;
     const password = event.target.password.value;
     const body = `{"email": "${email}","password": "${password}"}`
+
     dispatch(login(body));
+
   }
 
   return (
@@ -44,5 +46,3 @@ function Signin() {
 }
 
 export default Signin;
-// POST request to localhost:3001/api/v1/user/login
-// {"email": "tony@stark.com","password": "password123"} OR {"email": "steve@rogers.com","password": "password456"}

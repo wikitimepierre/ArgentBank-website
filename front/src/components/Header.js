@@ -1,15 +1,15 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import Logo from '../assets/images/argentBankLogo.png';
 import DebugCheckbox from './DebugCheckbox';
 
 function Header() {
+  const dispatch = useDispatch();
 
-  // TODO: Get the username from the store if available
-  let username = useSelector(state => state.userName);
-  //TODO if not, i should be redirected to the home page + dispatch empty user info      break;
-
+  const username = "XXXXXX"
+  //TODO: get username from redux store
+  //username = useSelector(state => state.userinfo.userName);
 
   let content;
   const location = useLocation();
@@ -24,11 +24,22 @@ function Header() {
       break;
     case "/user":
     case "/edit":
-      content = (<span>
-        <i className="fa fa-user-circle"> <a> <Link to="/user">{username}</Link> </a> </i>
-        <span>&nbsp;&nbsp;</span>
-        <i className="fa fa-sign-out"> <a> <Link to="/"> Sign Out</Link> </a> </i>
-      </span>);
+      content =
+        <span>
+          <i className="fa fa-user-circle">
+            <a>
+              <Link to="/user">{username}</Link>
+            </a>
+          </i>
+          <span>&nbsp;&nbsp;</span>
+          <i className="fa fa-sign-out">
+            <a>
+              <Link to="/"> Sign Out</Link>
+            </a>
+          </i>
+        </span>
+        ;
+      break;
     default:
       content = null;
   }

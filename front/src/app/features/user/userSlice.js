@@ -12,7 +12,7 @@ export const login = createAsyncThunk(
     if (response.ok) {
       const data = await response.json();
 
-      thunkAPI.dispatch(userInfo({
+      thunkAPI.dispatch(userAuth({
         email: JSON.parse(loginCredentials).email,
         token: data.body.token
       }));
@@ -46,6 +46,9 @@ export const profile = createAsyncThunk(
         userName: data.body.userName,
         id: data.body.id
       }));
+
+      window.location.href = "/user";
+
       return data;
     } else {
       console.error(await response.json());
@@ -67,9 +70,11 @@ const userSlice = createSlice({
     id: null
   },
   reducers: {
-    userInfo: (state, action) => {
+    userAuth: (state, action) => {
       state.email = action.payload.email;
       state.token = action.payload.token;
+    },
+    userInfo: (state, action) => {
       state.firstName = action.payload.firstName;
       state.lastName = action.payload.lastName;
       state.userName = action.payload.userName;
@@ -78,6 +83,6 @@ const userSlice = createSlice({
   }
 });
 
-export const { userInfo } = userSlice.actions;
+export const { userAuth, userInfo } = userSlice.actions;
 export default userSlice.reducer;
 
