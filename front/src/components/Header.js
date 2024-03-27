@@ -3,46 +3,30 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import Logo from '../assets/images/argentBankLogo.png';
 import DebugCheckbox from './DebugCheckbox';
+import { resetStore } from '../app/actions';
 
 function Header() {
-  const dispatch = useDispatch();
+  const userName = useSelector((state) => state.userInfo.userName) ?? "";
+  const separator = <span>&nbsp;&nbsp;</span>
 
-  const username = "XXXXXX"
-  //TODO: get username from redux store
-  //username = useSelector(state => state.userinfo.userName);
+  // reset the store
+  const dispatch = useDispatch();
+  const signOutClick = () => { dispatch(resetStore()) };
 
   let content;
+  const contentWoUserName = <span><i className="fa fa-user-circle"> <span> <Link to="/sign-in"> Sign In</Link> </span> </i></span>;
+  const contentUserName = <span><i className="fa fa-user-circle">{separator}<a><Link to="/user">{userName}</Link></a></i>{separator}<i className="fa fa-sign-out">{separator}<span onClick={signOutClick}><a><Link to="/"> Sign Out</Link></a></span></i></span>;
+  const contentHome = <a><Link to="/">Home</Link></a>;
+
   const location = useLocation();
   switch (location.pathname) {
-    case "/":
-      content = (<span>
-        <i className="fa fa-user-circle"> <span> <Link to="/sign-in"> Sign In</Link> </span> </i>
-      </span>);
-      break;
-    case "/sign-in":
-      content = <a> <Link to="/">Home</Link></a>;
-      break;
-    case "/user":
-    case "/edit":
-      content =
-        <span>
-          <i className="fa fa-user-circle">
-            <a>
-              <Link to="/user">{username}</Link>
-            </a>
-          </i>
-          <span>&nbsp;&nbsp;</span>
-          <i className="fa fa-sign-out">
-            <a>
-              <Link to="/"> Sign Out</Link>
-            </a>
-          </i>
-        </span>
-        ;
-      break;
-    default:
-      content = null;
+    case "/": content = userName !== "" ? contentUserName : contentWoUserName; break;
+    case "/sign-in": content = contentHome; break;
+    case "/user": content = contentUserName; break;
+    case "/edit": content = contentUserName; break;
+    default: content = null;
   }
+
 
   return (
     <nav className="main-nav">

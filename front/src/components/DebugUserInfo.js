@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import { userAuth, userInfo } from "../app/features/user/userSlice";
 
 const DebugUserInfo = () => {
   const separator = <span> - </span>;

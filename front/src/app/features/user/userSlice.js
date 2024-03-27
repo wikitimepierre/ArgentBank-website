@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { resetStore } from '../../actions';
 
 export const login = createAsyncThunk(
   'users/login',
@@ -19,6 +20,7 @@ export const login = createAsyncThunk(
 
       thunkAPI.dispatch(profile(data.body.token));
       //alert('email: ' + JSON.parse(loginCredentials).email + ' token: ' + data.body.token);
+
       return data;
     } else {
       console.error(await response.json());
@@ -46,8 +48,6 @@ export const profile = createAsyncThunk(
         userName: data.body.userName,
         id: data.body.id
       }));
-
-      window.location.href = "/user";
 
       return data;
     } else {
@@ -80,7 +80,19 @@ const userSlice = createSlice({
       state.userName = action.payload.userName;
       state.id = action.payload.id;
     }
-  }
+  },
+  extraReducers: (builder) => {
+    builder.addCase(resetStore, () => {
+      return {
+        email: null,
+        token: null,
+        firstName: null,
+        lastName: null,
+        userName: null,
+        id: null
+      };
+    });
+  },
 });
 
 export const { userAuth, userInfo } = userSlice.actions;

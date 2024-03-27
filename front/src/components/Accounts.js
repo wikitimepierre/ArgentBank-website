@@ -1,11 +1,18 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Account from './Account';
 
 function Accounts() {
+  const firstName = useSelector((state) => state.userInfo.firstName) ?? "";
+  const lastName = useSelector((state) => state.userInfo.lastName) ?? "";
+  const welcome = "Welcome back \n" + firstName + " " + lastName;
+  const navigate = useNavigate();
+
   return (
     <div className="header main bg-dark">
-      <br /><h1>Welcome back<br />Tony Jarvis!</h1>
-      <button className="edit-button">Edit Name</button><br /><br />
+      <br /><h1>{welcome}</h1>
+      <button className="edit-button" onClick={() => navigate('/edit')}>Edit Name</button><br /><br />
       <h2 className="sr-only">Accounts</h2>
       <Account
         title="Argent Bank Checking (x8349)"

@@ -1,10 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { login } from '../app/features/user/userSlice';
 
 function Signin() {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -13,6 +16,8 @@ function Signin() {
     const body = `{"email": "${email}","password": "${password}"}`
 
     dispatch(login(body));
+
+    navigate('/user'); //if you logged in
 
   }
 
