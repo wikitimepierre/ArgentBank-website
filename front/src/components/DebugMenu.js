@@ -27,6 +27,8 @@ function DebugMenu() {
         {separator}
         <Link to="/accounttable">ACCOUNTS</Link>
         {separator}
+        <Link to="/mockup">MOCKUP</Link>
+        {separator}
       </a>
       {/*}      <DebugCounter />*/}
       <DebugUserInfo />

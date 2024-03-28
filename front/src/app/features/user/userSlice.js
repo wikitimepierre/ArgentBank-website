@@ -18,7 +18,7 @@ export const login = createAsyncThunk(
         token: data.body.token
       }));
 
-      thunkAPI.dispatch(profile(data.body.token));
+      thunkAPI.dispatch(profilePOST(data.body.token));
       //alert('email: ' + JSON.parse(loginCredentials).email + ' token: ' + data.body.token);
 
       return data;
@@ -30,8 +30,8 @@ export const login = createAsyncThunk(
   }
 );
 
-export const profile = createAsyncThunk(
-  'users/profile',
+export const profilePOST = createAsyncThunk(
+  'users/POST',
   async (token, thunkAPI) => {
     const response = await fetch('http://localhost:3001/api/v1/user/profile', {
       method: 'POST',
@@ -49,6 +49,36 @@ export const profile = createAsyncThunk(
         id: data.body.id
       }));
 
+      return data;
+    } else {
+      console.error(await response.json());
+      alert("userInfo - " + response.status + " - " + response.statusText);
+      //alert('Invalid credentials');
+      return thunkAPI.rejectWithValue(await response.json());
+    }
+  }
+);
+
+export const profilePUT = createAsyncThunk(
+  'users/profilePUT',
+  async ({ token, newUserName }, thunkAPI) => {
+    const response = await fetch('http://localhost:3001/api/v1/user/profile', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({ userName: newUserName })
+    });
+    if (response.ok) {
+      const data = await response.json();
+      thunkAPI.dispatch(userInfo({
+        userName: data.body.userName,
+        firstName: data.body.firstName,
+        lastName: data.body.lastName,
+        userName: data.body.userName,
+        id: data.body.id
+      }));
       return data;
     } else {
       console.error(await response.json());

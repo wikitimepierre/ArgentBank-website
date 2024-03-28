@@ -4,9 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import Account from './Account';
 
 function Accounts() {
-  const firstName = useSelector((state) => state.userInfo.firstName) ?? "";
-  const lastName = useSelector((state) => state.userInfo.lastName) ?? "";
-  const welcome = "Welcome back \n" + firstName + " " + lastName;
+  const userName = useSelector((state) => state.userInfo.userName) ?? "";
+  const welcome = "Welcome back \n" + userName;
   const navigate = useNavigate();
 
   return (
