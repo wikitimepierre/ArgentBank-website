@@ -15,9 +15,17 @@ function Signin() {
     const password = event.target.password.value;
     const body = `{"email": "${email}","password": "${password}"}`
 
-    dispatch(login(body));
+    dispatch(login(body))
+      .then((response) => {
+        alert(response.payload.message)
+        navigate('/user');
+      })
+      .catch((error) => {
+        navigate('/');
+        //return null;
+        // alert("login failed!")
+      });
 
-    navigate('/user'); //if you logged in
 
   }
 

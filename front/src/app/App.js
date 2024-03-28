@@ -9,7 +9,6 @@ import Open from '../components/Open';
 import SignIn from '../components/SignIn';
 import Edit from '../components/Edit';
 import Accounts from '../components/Accounts';
-import ProductTable from '../components/ProductTable';
 import Mockup from '../components/Mockup';
 import Footer from '../components/Footer';
 
@@ -25,7 +24,6 @@ function App() {
         <Route path="/sign-in" element={<> <SignIn /> </>} />
         <Route path="/edit" element={<> < Edit /> </>} />
         <Route path="/user" element={<> < Accounts /> </>} />
-        <Route path="/producttable" element={<> < ProductTable /> </>} />
         <Route path="/mockup" element={<> < Mockup /> </>} />
       </Routes>
 
