@@ -34,11 +34,11 @@ function Edit() {
         </div>
         <div className="input-wrapper">
           <label htmlFor="firstname">First Name</label>
-          <input type="text" id="firstName" defaultValue={firstName} />
+          <input type="text" id="firstName" defaultValue={firstName} disabled />
         </div>
         <div className="input-wrapper">
           <label htmlFor="lastname">Last Name</label>
-          <input type="text" id="lastName" defaultValue={lastName} />
+          <input type="text" id="lastName" defaultValue={lastName} disabled />
         </div>
         <button className="edit-button" onClick={handleSave}>Save</button>{separator}
         <button className="edit-button" onClick={() => navigate('/user')}>Cancel</button>
