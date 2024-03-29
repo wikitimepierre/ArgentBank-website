@@ -108,13 +108,6 @@ paths:
 # ---------------------------------------------------------------------------------------
 # USER/TRANSACTION
 # ---------------------------------------------------------------------------------------
-# DONE     tags
-# TODO     security
-# TODO     summary
-# TODO     description
-# TODO***********************************************************************************parameters
-# TODO     produces
-# TODO     responses
   /user/transactionsList:
     post:
       security:
@@ -166,10 +159,10 @@ paths:
       parameters:
         - in: body
           name: body
-          description: Update user profile attributes
+          description: Transaction Update
           required: true
           schema:
-            $ref: '#/definitions/UserProfile'
+            $ref: '#/definitions/Transaction'
       produces:
         - application/json
       responses:
