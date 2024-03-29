@@ -9,6 +9,9 @@ basePath: /api/v1
 schemes:
   - http
 paths:
+# ---------------------------------------------------------------------------------------
+# USER
+# ---------------------------------------------------------------------------------------
   /user/login:
     post:
       tags:
@@ -65,8 +68,8 @@ paths:
         - User Module
       summary: User Profile API
       description: API for fetching a user profile
-      #produces:
-       # - application/json
+      produces:
+        - application/json
       responses:
         '200':
           description: User profile retrieved successully
@@ -101,6 +104,123 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
+
+# ---------------------------------------------------------------------------------------
+# USER/TRANSACTION
+# ---------------------------------------------------------------------------------------
+# DONE     tags
+# TODO     security
+# TODO     summary
+# TODO     description
+# TODO***********************************************************************************parameters
+# TODO     produces
+# TODO     responses
+  /user/transactionsList:
+    post:
+      security:
+        - Bearer: []
+      tags:
+        - User/Transaction Module
+      summary: Transactions List
+      description: API to get a list of transactions between 2 dates
+      parameters:
+        - in: body
+          name: body
+          description: Dates Payload
+          required: true
+          schema:
+            $ref: '#/definitions/TransactionDates'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Signup Successfully
+          schema:
+            $ref: '#/definitions/TransactionsList'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+  /user/transaction:
+    post:
+      tags:
+        - User/Transaction Module
+      summary: Transaction Read
+      description: API for fetching a user transaction
+      #produces:
+       # - application/json
+      responses:
+        '200':
+          description: Transaction retrieved successully
+          schema:
+            $ref: '#/definitions/Transaction'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+    put:
+      tags:
+        - User/Transaction Module
+      summary: Transaction Update
+      description: API for updating Category & Note of a transaction
+      parameters:
+        - in: body
+          name: body
+          description: Update user profile attributes
+          required: true
+          schema:
+            $ref: '#/definitions/UserProfile'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Transaction updated successully
+          schema:
+            $ref: '#/definitions/ApiResponse'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+# ---------------------------------------------------------------------------------------
+# BANK
+# ---------------------------------------------------------------------------------------
+  /bank/typeList:
+    post:
+      tags:
+        - Bank Module
+      summary: Transactions Types
+      description: API for fetching the list of transaction types
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Login Successfully
+          schema:
+            $ref: '#/definitions/TransactionTypes'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+  /bank/categoryList:
+    post:
+      tags:
+        - Bank Module
+      summary: Transactions Categories
+      description: API for fetching the list of transaction categories
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Signup Successfully
+          schema:
+            $ref: '#/definitions/TransactionCategories'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
+# ---------------------------------------------------------------------------------------
+# DEFINITIONS
+# ---------------------------------------------------------------------------------------
 securityDefinitions:
   Bearer:
     type: apiKey
@@ -156,3 +276,49 @@ definitions:
     properties:
       userName:
         type: string
+  TransactionDates:
+    properties:
+      startDate:
+        type: integer
+        description: start date of transations
+      endDate:
+        type: integer
+        description: end date of transations
+  TransactionsList:
+    type: array
+    description: list of transaction IDs
+    items:
+      type: integer
+  Transaction:
+    properties:
+      date:
+        type: string
+        description: user public name
+      description:
+        type: string
+        description: description
+      amount:
+        type: number
+        description: amount of transaction
+      balance:
+        type: number
+        description: account balance
+      type:
+        type: integer
+        description: type of transaction
+      category:
+        type: integer
+        description: category of transaction
+      note:
+        type: string
+        description: optional note by user
+  TransactionTypes:
+    type: array
+    description: Types of transaction list
+    items:
+      type: string
+  TransactionCategories:
+    type: array
+    description: Categories of transaction list
+    items:
+      type: string
