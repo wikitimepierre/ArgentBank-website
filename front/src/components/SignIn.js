@@ -22,11 +22,7 @@ function Signin() {
       })
       .catch((error) => {
         navigate('/');
-        //return null;
-        // alert("login failed!")
       });
-
-
   }
 
   return (

@@ -19,7 +19,6 @@ export const login = createAsyncThunk(
       }));
 
       thunkAPI.dispatch(profilePOST(data.body.token));
-      //alert('email: ' + JSON.parse(loginCredentials).email + ' token: ' + data.body.token);
 
       return data;
     } else {
@@ -53,7 +52,6 @@ export const profilePOST = createAsyncThunk(
     } else {
       console.error(await response.json());
       alert("userInfo - " + response.status + " - " + response.statusText);
-      //alert('Invalid credentials');
       return thunkAPI.rejectWithValue(await response.json());
     }
   }
@@ -83,7 +81,6 @@ export const profilePUT = createAsyncThunk(
     } else {
       console.error(await response.json());
       alert("userInfo - " + response.status + " - " + response.statusText);
-      //alert('Invalid credentials');
       return thunkAPI.rejectWithValue(await response.json());
     }
   }

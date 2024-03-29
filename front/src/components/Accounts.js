@@ -10,9 +10,9 @@ function Accounts() {
   const welcome = "Welcome back \n" + userName;
 
   const firstName = useSelector((state) => state.userInfo.firstName) ?? "";
-  const amount1 = firstName === "Tony" ? "$2,682.08" : "$2,145,082.79";
-  const amount2 = firstName === "Tony" ? "$15,545.93" : "$150,584,928.42";
-  const amount3 = firstName === "Tony" ? "$18,021.62" : "$184,124,623.30";
+  const amount1 = firstName === "Tony" ? "$2,145,082" : "$2,682";
+  const amount2 = firstName === "Tony" ? "$150,584,123,928" : "$15,545";
+  const amount3 = firstName === "Tony" ? "$184,124,623" : "$18,021";
 
   return (
     <div className="header main bg-dark">

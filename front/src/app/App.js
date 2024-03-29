@@ -36,4 +36,3 @@ function App() {
 export default App;
 
 //The `Provider` component makes the Redux store available to nested components
-//TODO: a 404 page ?
