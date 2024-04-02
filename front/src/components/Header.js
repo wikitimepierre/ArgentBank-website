@@ -27,7 +27,6 @@ function Header() {
     default: content = null;
   }
 
-
   return (
     <nav className="main-nav">
       <div className="inrow">

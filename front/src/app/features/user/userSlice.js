@@ -23,7 +23,7 @@ export const login = createAsyncThunk(
       return data;
     } else {
       console.error(await response.json());
-      alert("login - " + response.status + " - " + response.statusText);
+      console.log("to replace - " + response.status + " - " + response.statusText);
       return thunkAPI.rejectWithValue(await response.json());
     }
   }

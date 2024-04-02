@@ -21,7 +21,7 @@ function Signin() {
         navigate('/user');
       })
       .catch((error) => {
-        navigate('/');
+        navigate('/error');
       });
   }
 
@@ -35,12 +35,10 @@ function Signin() {
           <div className="input-wrapper">
             <label htmlFor="email">Email</label>
             <input type="email" id="email" />
-            {/* <input type="email" id="email" defaultValue="tony@stark.com" /> */}
           </div>
           <div className="input-wrapper">
             <label htmlFor="password">Password</label>
             <input type="password" id="password" />
-            {/* <input type="password" id="password" defaultValue="password123" /> */}
           </div>
           <div className="input-remember">
             <input type="checkbox" id="remember-me" />

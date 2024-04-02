@@ -11,6 +11,7 @@ import Edit from '../components/Edit';
 import Accounts from '../components/Accounts';
 import Mockup from '../components/Mockup';
 import Footer from '../components/Footer';
+import Error from '../components/Error';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/edit" element={<> < Edit /> </>} />
         <Route path="/user" element={<> < Accounts /> </>} />
         <Route path="/mockup" element={<> < Mockup /> </>} />
+        <Route path="/error" element={<> < Error /> </>} />
       </Routes>
 
       <Footer />
