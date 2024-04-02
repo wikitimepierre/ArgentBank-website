@@ -109,20 +109,13 @@ paths:
 # USER/TRANSACTION
 # ---------------------------------------------------------------------------------------
   /user/transactionsList:
-    post:
+    get:
       security:
         - Bearer: []
       tags:
         - User/Transaction Module
       summary: Transactions List
-      description: API to get a list of transactions between 2 dates
-      parameters:
-        - in: body
-          name: body
-          description: Dates Payload
-          required: true
-          schema:
-            $ref: '#/definitions/TransactionDates'
+      description: API to get a list of transactions of current month
       produces:
         - application/json
       responses:
@@ -135,13 +128,20 @@ paths:
         '500':
           description: Internal Server Error
   /user/transaction:
-    post:
+    get:
       security:
         - Bearer: []
       tags:
         - User/Transaction Module
       summary: Transaction Read
       description: API for fetching a user transaction
+      parameters:
+        - in: body
+          name: body
+          description: Transaction ID
+          required: true
+          schema:
+            $ref: '#/definitions/TransactionsId'
       #produces:
        # - application/json
       responses:
@@ -182,7 +182,7 @@ paths:
 # BANK
 # ---------------------------------------------------------------------------------------
   /bank/typeList:
-    post:
+    get:
       tags:
         - Bank Module
       summary: Transactions Types
@@ -199,7 +199,7 @@ paths:
         '500':
           description: Internal Server Error
   /bank/categoryList:
-    post:
+    get:
       tags:
         - Bank Module
       summary: Transactions Categories
@@ -273,14 +273,11 @@ definitions:
     properties:
       userName:
         type: string
-  TransactionDates:
+  TransactionsId:
     properties:
-      startDate:
+      id:
         type: integer
-        description: start date of transations
-      endDate:
-        type: integer
-        description: end date of transations
+        description: transaction ID
   TransactionsList:
     type: array
     description: list of transaction IDs
