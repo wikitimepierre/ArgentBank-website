@@ -136,6 +136,8 @@ paths:
           description: Internal Server Error
   /user/transaction:
     post:
+      security:
+        - Bearer: []
       tags:
         - User/Transaction Module
       summary: Transaction Read
@@ -152,6 +154,8 @@ paths:
         '500':
           description: Internal Server Error
     put:
+      security:
+        - Bearer: []
       tags:
         - User/Transaction Module
       summary: Transaction Update
